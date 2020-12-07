@@ -1,0 +1,109 @@
+ackage u3e6;
+import java.util.Scanner;
+public class Metodos {
+        Nodo raiz= null;
+    Nodo cima = null ;
+    Nodo anterior = null;
+    Nodo siguiente = null;
+    int tamanio=0, posicion,contador=1;
+    boolean repetir=true;
+    Scanner leer = new Scanner(System.in);
+    public void Empujar(Object elemento){
+       Nodo nodoactual = new Nodo(elemento);
+        raiz =nodoactual;
+        cima= nodoactual;
+        tamanio++;
+    }   
+    public void InsertarAlfinal(Object inserta){
+        Nodo nodoactual = new Nodo(inserta);
+        if (raiz==null) {
+            raiz=nodoactual;
+            cima=nodoactual;
+        }else{
+            cima.siguiente=nodoactual;
+            cima=nodoactual;
+        }
+        tamanio++;
+    }
+    public void InsertarAlInicio(Object inserta){
+        Nodo nodoactual= new Nodo(inserta);
+        if (raiz == null) {
+            raiz =nodoactual;
+            cima= nodoactual;
+        }else{
+            nodoactual.siguiente=raiz;
+            raiz=nodoactual;
+        }
+        tamanio++;
+    }
+    public void InsertarPosicion(Object inserta){
+        Nodo auxiliar=raiz;
+        System.out.println("auxiliar: "+auxiliar.elemento);
+        System.out.println("raiz: "+raiz.elemento);
+        System.out.println("cima: "+cima.elemento);
+        Nodo nodoactual= new Nodo(inserta);
+        if (raiz==null) {
+            raiz=nodoactual;
+            cima=nodoactual;
+        }else{
+            while(repetir){
+                System.out.println("Que posicion insertar?");
+                posicion=leer.nextInt();
+                if (posicion>tamanio) {
+                    System.out.println("Solo puedes insertar hasta la posicion: "+(tamanio+1));
+                }else{
+                    repetir=false;
+                }
+                if (posicion==1) {
+                    System.out.println("Por si es la posicion es la primera");
+                    nodoactual.siguiente=raiz;
+                    raiz=nodoactual;
+                }else{
+                    for (int i = 1; i <=posicion; i++) {
+                        if (i==posicion-1) {
+                            anterior=auxiliar;
+                            siguiente=auxiliar.siguiente;
+                            System.out.println("Entro aqui para ingresar en la posicion que no se cual es bbbb");
+                        }else{
+                            auxiliar=auxiliar.siguiente;
+                        }
+                    }
+                    cima=raiz;
+                    for (int i =1; i <= tamanio; i++) {
+                        if (cima.elemento.equals(anterior.elemento)) {
+                            cima.siguiente=nodoactual;
+                            cima=nodoactual;
+                            nodoactual.siguiente=siguiente;
+                            System.out.println("Entro aqui para ingresar en la posicion que no se cual es aaa");
+                        }else{
+                            cima=cima.siguiente;
+                        }
+                    }
+                }               
+            }           
+        }
+        tamanio++;
+        repetir=true;
+        
+    }
+    public void eleminar(){
+        if (raiz==null) {
+            System.out.println("Ningun elemento esta");
+        }else{
+            raiz=raiz.siguiente;
+            tamanio--;
+            System.out.println("Dato eleminado");
+        }
+    }
+    public void mostrar(){
+        if (cima==null) {
+            System.out.println("La Lista esta Vacia");
+        }
+        Nodo recorre=raiz;
+        while(recorre!=null){
+            System.out.println(recorre.elemento);
+            recorre=recorre.siguiente;
+        }
+        
+    }
+}

@@ -1,0 +1,81 @@
+package u3e6;
+import java.util.Scanner;
+public class Principal {
+
+    public static void main(String[] args) {
+      boolean continuar= true;
+      int numero,tam=0;
+        int opcion; 
+        boolean a=true;
+        ListasEnlazada Cola = new ListasEnlazada();
+        Scanner leer = new Scanner(System.in);
+        while(continuar){
+            System.out.println("Menu");
+            if (a&&tam==0) {
+                System.out.println("0.- Ingresa el primer valor");   
+                
+            }else{
+                System.out.println("1.-Insertar al principio");
+                System.out.println("2.-Insertar al final");
+                System.out.println("3.-Ingresa en cualquier posicion");
+                System.out.println("4.-Eleminar");
+                System.out.println("5.-Mostrar\t");
+            }
+            
+            
+            System.out.println("6.-Salir");
+          
+           
+            opcion=leer.nextInt();
+             System.out.println("----------");
+            switch(opcion){
+                case 0://ingresar por primera vez
+                    a=false;
+                    System.out.println("Ingresa el dato");
+                    numero=leer.nextInt();
+                    Cola.Empujar(numero);
+                    tam++;
+                break;
+                case 1://Insertar al principio
+                        System.out.println("Ingresa el dato que deseas ingresar");
+                        numero=leer.nextInt();
+                        Cola.InsertarAlInicio(numero);
+                    
+                    System.out.println("");
+                    tam++;
+                break;    
+                case 2:
+                //Insertar al final
+                     System.out.println("Ingresa el dato que deseas ingresar");
+                     numero=leer.nextInt();
+                    Cola.InsertarAlfinal(numero);
+                    tam++;
+                    break;
+                case 3:
+                //Ingresa en cualquier posicion
+                    System.out.println("Ingresa el dato que deseas ingresar");
+                    numero=leer.nextInt();
+                    Cola.InsertarPosicion(numero);
+                    tam++;
+                break; 
+                case 4://eleminar
+                    tam--;
+                    Cola.eleminar();
+                    a=true;
+                break;
+                case 5://Mostrar
+                    Cola.mostrar();
+                break;
+                case 6:
+                    continuar=false;
+                break; 
+                default:
+                    System.out.println(opcion+" No es una opcion del menu");
+                    break;
+            }
+             System.out.println("----------");
+        }  
+        
+    }
+    
+}
